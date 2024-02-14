@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+
 
 namespace PacketSender
 {
-    internal static class Program
+    static class Program
     {
         /// <summary>
         /// Главная точка входа для приложения.
@@ -16,7 +14,9 @@ namespace PacketSender
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            FShow f1 = new FShow();
+            f1.Show();
+            Application.Run();
         }
     }
 }
