@@ -63,5 +63,26 @@ namespace PacketSender
             return ReadINI(section, key).Length > 0;
         }
 
+        public List<string> GetSectionKeys(string section)
+        {
+            const int bufferSize = 2048;
+            StringBuilder buffer = new StringBuilder(bufferSize);
+            int length = GetPrivateProfileString(section, null, "", buffer, bufferSize, FileName);
+
+            if (length == 0)
+            {
+                return new List<string>();
+            }
+            List<string> keys = buffer.ToString().Split(new char[] { '\0' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+            return keys;
+        }
+
+
+        public bool SectionExists(string section)
+        {
+            List<string> keys = GetSectionKeys(section);
+            return keys.Count > 0;
+        }
+
     }
 }

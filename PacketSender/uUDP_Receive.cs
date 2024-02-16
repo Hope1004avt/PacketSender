@@ -26,6 +26,7 @@ namespace PacketSender
         //	Удаленный порт
         private int pr_RemotePort;
 
+        public UdpClient UdpClientInstance => pr_Udp;
         //---------------Данные-------------
         //	Принятые данные
         private byte[] pr_Data;
@@ -61,6 +62,27 @@ namespace PacketSender
                 MessageBox.Show(("Произошло исключение: " + error), "Внимание!");
                 StopUdp();
             }
+        }
+
+        public string IpAddress
+        {
+            get
+            {
+                return pr_IpAddress;
+            }
+        }
+
+        public int LocalPort
+        {
+            get
+            {
+                return pr_LocalPort;
+            }
+        }
+
+        public IPEndPoint GetRemoveEndPoint()
+        {
+            return pr_ReceiveInfo;
         }
 
         // Изменить настройки 

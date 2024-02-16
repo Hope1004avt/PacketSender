@@ -62,6 +62,7 @@
             this.Debug_ToolStripMenuItem.Name = "Debug_ToolStripMenuItem";
             this.Debug_ToolStripMenuItem.Size = new System.Drawing.Size(225, 22);
             this.Debug_ToolStripMenuItem.Text = "Режим работы для отладки";
+            this.Debug_ToolStripMenuItem.Click += new System.EventHandler(this.Debug_ToolStripMenuItem_Click);
             // 
             // Show_ToolStripMenuItem
             // 
@@ -73,8 +74,9 @@
             // 
             this.pShow.Location = new System.Drawing.Point(12, 53);
             this.pShow.Name = "pShow";
-            this.pShow.Size = new System.Drawing.Size(207, 368);
+            this.pShow.Size = new System.Drawing.Size(207, 356);
             this.pShow.TabIndex = 2;
+            this.pShow.Paint += new System.Windows.Forms.PaintEventHandler(this.pShow_Paint);
             // 
             // lbShow
             // 
@@ -85,6 +87,8 @@
             this.lbShow.Name = "lbShow";
             this.lbShow.Size = new System.Drawing.Size(589, 356);
             this.lbShow.TabIndex = 3;
+            this.lbShow.SelectedIndexChanged += new System.EventHandler(this.lbShow_SelectedIndexChanged);
+            this.lbShow.DoubleClick += new System.EventHandler(this.lbShow_DoubleClick);
             // 
             // lShow
             // 
@@ -100,7 +104,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(835, 434);
+            this.ClientSize = new System.Drawing.Size(835, 427);
             this.Controls.Add(this.lShow);
             this.Controls.Add(this.lbShow);
             this.Controls.Add(this.pShow);
