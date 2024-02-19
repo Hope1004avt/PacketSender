@@ -144,10 +144,42 @@ namespace PacketSender
             Button button = new Button
             {
                 Name = tbName.Text,
-                Text = tbName.Text,
+               // Text = tbName.Text,
                 Location = new System.Drawing.Point(30, 50 * (buttons.Count - 1)),
-                Size = new System.Drawing.Size(150, 30)
-            };
+                Size = new System.Drawing.Size(150, 40),
+                MaximumSize = new Size(150, int.MaxValue),
+                AutoSize = true,
+
+                AutoSizeMode = AutoSizeMode.GrowOnly
+        };
+
+            string buttonText = tbName.Text;
+
+
+            if (buttonText.Length > 18)
+            {
+                StringBuilder sb = new StringBuilder();
+                int charCount = 0;
+                foreach (char c in buttonText)
+                {
+                    if (c == ' ' && charCount > 18)
+                    {
+                        sb.Append("\n");
+                        charCount = 0;
+                    }
+                    else
+                    {
+                        sb.Append(c);
+                        charCount++;
+                    }
+                }
+                button.Text = sb.ToString();
+            }
+            else
+            {
+                button.Text = tbName.Text;
+            }
+            
 
             CheckBox checkBox = new CheckBox
             {
@@ -263,10 +295,38 @@ namespace PacketSender
                         Button button = new Button
                         {
                             Name = line,
-                            Text = line,
+                            //Text = line,
                             Location = new System.Drawing.Point(30, 50 * buttons.Count),
-                            Size = new System.Drawing.Size(150, 30)
+                            Size = new System.Drawing.Size(150, 40),
+                            MaximumSize = new Size(150, int.MaxValue),
+                            AutoSize = true,
+                            AutoSizeMode = AutoSizeMode.GrowOnly
                         };
+
+                        string buttonText = line;
+                        if (buttonText.Length > 18)
+                        {
+                            StringBuilder sb = new StringBuilder();
+                            int charCount = 0;
+                            foreach (char c in buttonText)
+                            {
+                                if (c == ' ' && charCount > 18)
+                                {
+                                    sb.Append("\n");
+                                    charCount = 0;
+                                }
+                                else
+                                {
+                                    sb.Append(c);
+                                    charCount++;
+                                }
+                            }
+                            button.Text = sb.ToString();
+                        }
+                        else
+                        {
+                            button.Text = line;
+                        }
 
                         button.Click += Button_Click;
                         buttons.Add(button);
@@ -502,9 +562,11 @@ namespace PacketSender
         {
             // Остановка работы сервера Udp
             UdpRc.StopUdp();
+            this.Hide();
+
             FShow fShow = new FShow();
+            fShow.FormClosed += (s, args) => this.Close();
             fShow.Show();
-            this.Close();
         }
 
         private void FDebug_FormClosing(object sender, FormClosingEventArgs e)

@@ -50,15 +50,14 @@ namespace PacketSender
 
             localPort = GetConstPortFromIni();
 
-
-
-
             var configData = ReadConfigFile();
             CreateButtons(configData);
+
 
             // Инициализация объектов UDP
             UdpRc = new uUDP_Receive(localPort); // установка локального порта приема 
             UdpRc.uUDP_Receive_Event += new uUDP_Event(My_DataRecieve);
+
 
             UDPTransmissionEnabled += (sender, sectionKey) =>
             {
@@ -144,15 +143,43 @@ namespace PacketSender
                     var button = new Button();
                     {
                         Name = buttonConfig.TryGetValue("name", out string name) ? name : "";
-                        button.Text = buttonConfig.TryGetValue("name", out string text) ? text : "";
                         button.Size = new Size(200, 40);
                         button.Font = new Font(button.Font.FontFamily, 10);
                         button.Location = new Point(0, y);
+
+                        string buttonText = buttonConfig.TryGetValue("name", out string text) ? text : "";
+                        if (buttonText.Length > 18)
+                        {
+                            StringBuilder sb = new StringBuilder();
+                            int charCount = 0;
+                            foreach (char c in buttonText)
+                            {
+                                if (c == ' ' && charCount > 18)
+                                {
+                                    sb.Append("\n");
+                                    charCount = 0;
+                                }
+                                else
+                                {
+                                    sb.Append(c);
+                                    charCount++;
+                                }
+                            }
+                            button.Text = sb.ToString();
+                        }
+                        else
+                        {
+                            button.Text = buttonText;
+                        }
+                        button.MaximumSize = new Size(200, int.MaxValue);
+                        button.AutoSize = true;
+                        
+                        button.AutoSizeMode = AutoSizeMode.GrowOnly;
                     };
+                    y += button.Height + 10; 
 
-                    y += button.Height + 10;
 
-                    // добавление обработчика события для кнопки 
+                // добавление обработчика события для кнопки 
                     button.Click += (sender, e) =>
                     {
                         this.Invoke(new Action(() =>
@@ -193,8 +220,8 @@ namespace PacketSender
                         }
                         UDPTransmissionEnabled?.Invoke(this, buttonConfig["name"]);
                     };
-                    pShow.Controls.Add(button);
-                    buttons[section.Key] = button;
+                     pShow.Controls.Add(button);
+                     buttons[section.Key] = button;
                 }
             }
         }
@@ -246,6 +273,7 @@ namespace PacketSender
                         $"{dataRegister} - данные полученные после чтения регистра. \n" +
                         $"Длина сообщения {DataOut.Length} \n");
                     }
+                    lbShow.TopIndex = lbShow.Items.Count - 1;
                 }));
             }));
         }

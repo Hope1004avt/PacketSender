@@ -44,7 +44,7 @@
             this.Choose_ToolStripMenuItem});
             this.Menu.Location = new System.Drawing.Point(0, 0);
             this.Menu.Name = "Menu";
-            this.Menu.Size = new System.Drawing.Size(835, 24);
+            this.Menu.Size = new System.Drawing.Size(842, 24);
             this.Menu.TabIndex = 0;
             this.Menu.Text = "Выбор режима работы";
             // 
@@ -72,6 +72,7 @@
             // 
             // pShow
             // 
+            this.pShow.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.pShow.Location = new System.Drawing.Point(12, 53);
             this.pShow.Name = "pShow";
             this.pShow.Size = new System.Drawing.Size(207, 356);
@@ -104,7 +105,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(835, 427);
+            this.ClientSize = new System.Drawing.Size(842, 424);
             this.Controls.Add(this.lShow);
             this.Controls.Add(this.lbShow);
             this.Controls.Add(this.pShow);
