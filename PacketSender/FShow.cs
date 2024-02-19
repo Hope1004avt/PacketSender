@@ -71,6 +71,8 @@ namespace PacketSender
         private void FShow_FormClosing(object sender, FormClosingEventArgs e)
         {
             UdpRc.StopUdp();
+
+            Application.Exit();
         }
 
         private void FShow_Load(object sender, EventArgs e)
@@ -387,10 +389,12 @@ namespace PacketSender
         private void Debug_ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // Остановка работы сервера Udp
-            UdpRc.StopUdp();
+            UdpRc.StopUdp(); 
+            this.Hide();
             FDebug fDebug = new FDebug();
+            fDebug.FormClosed += (s, args) => this.Close();
             fDebug.Show();
-            this.Close();
+           
         }
 
         private void lbShow_SelectedIndexChanged(object sender, EventArgs e)

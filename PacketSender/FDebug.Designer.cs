@@ -194,6 +194,7 @@
             this.tbHexString.Name = "tbHexString";
             this.tbHexString.Size = new System.Drawing.Size(697, 20);
             this.tbHexString.TabIndex = 147;
+            this.tbHexString.TextChanged += new System.EventHandler(this.tbHexString_TextChanged);
             this.tbHexString.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbHexString_KeyPress);
             // 
             // lTransmit

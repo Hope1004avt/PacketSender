@@ -509,10 +509,8 @@ namespace PacketSender
 
         private void FDebug_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (sender is FDebug)
-            {
-                Application.Exit();
-            }
+            UdpRc.StopUdp();
+            Application.Exit();
         }
 
         private void tbPort_KeyPress(object sender, KeyPressEventArgs e)
@@ -529,6 +527,11 @@ namespace PacketSender
             ListBox newList = new ListBox();
             newList = (ListBox)sender;
             newList.Items.Clear();
+        }
+
+        private void tbHexString_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
