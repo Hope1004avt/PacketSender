@@ -69,7 +69,7 @@
             this.pButton.Location = new System.Drawing.Point(1, 157);
             this.pButton.Margin = new System.Windows.Forms.Padding(0);
             this.pButton.Name = "pButton";
-            this.pButton.Size = new System.Drawing.Size(207, 258);
+            this.pButton.Size = new System.Drawing.Size(241, 258);
             this.pButton.TabIndex = 158;
             // 
             // hexString
@@ -91,7 +91,7 @@
             this.tbName.Margin = new System.Windows.Forms.Padding(5);
             this.tbName.Multiline = true;
             this.tbName.Name = "tbName";
-            this.tbName.Size = new System.Drawing.Size(426, 20);
+            this.tbName.Size = new System.Drawing.Size(615, 20);
             this.tbName.TabIndex = 156;
             this.tbName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbName_KeyPress);
             // 
@@ -107,7 +107,7 @@
             // lReceive
             // 
             this.lReceive.AutoSize = true;
-            this.lReceive.Location = new System.Drawing.Point(213, 260);
+            this.lReceive.Location = new System.Drawing.Point(255, 259);
             this.lReceive.Margin = new System.Windows.Forms.Padding(5);
             this.lReceive.Name = "lReceive";
             this.lReceive.Size = new System.Drawing.Size(46, 13);
@@ -127,7 +127,7 @@
             // 
             // bSaveFile
             // 
-            this.bSaveFile.Location = new System.Drawing.Point(684, 423);
+            this.bSaveFile.Location = new System.Drawing.Point(883, 422);
             this.bSaveFile.Margin = new System.Windows.Forms.Padding(5);
             this.bSaveFile.Name = "bSaveFile";
             this.bSaveFile.Size = new System.Drawing.Size(117, 26);
@@ -192,7 +192,7 @@
             this.tbHexString.Margin = new System.Windows.Forms.Padding(5);
             this.tbHexString.Multiline = true;
             this.tbHexString.Name = "tbHexString";
-            this.tbHexString.Size = new System.Drawing.Size(697, 20);
+            this.tbHexString.Size = new System.Drawing.Size(886, 20);
             this.tbHexString.TabIndex = 147;
             this.tbHexString.TextChanged += new System.EventHandler(this.tbHexString_TextChanged);
             this.tbHexString.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbHexString_KeyPress);
@@ -200,7 +200,7 @@
             // lTransmit
             // 
             this.lTransmit.AutoSize = true;
-            this.lTransmit.Location = new System.Drawing.Point(213, 136);
+            this.lTransmit.Location = new System.Drawing.Point(255, 135);
             this.lTransmit.Margin = new System.Windows.Forms.Padding(5);
             this.lTransmit.Name = "lTransmit";
             this.lTransmit.Size = new System.Drawing.Size(67, 13);
@@ -213,9 +213,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lbTransmit.FormattingEnabled = true;
             this.lbTransmit.HorizontalScrollbar = true;
-            this.lbTransmit.Location = new System.Drawing.Point(220, 156);
+            this.lbTransmit.Location = new System.Drawing.Point(258, 156);
             this.lbTransmit.Name = "lbTransmit";
-            this.lbTransmit.Size = new System.Drawing.Size(596, 95);
+            this.lbTransmit.Size = new System.Drawing.Size(747, 95);
             this.lbTransmit.TabIndex = 143;
             this.lbTransmit.DoubleClick += new System.EventHandler(this.lbTransmit_DoubleClick);
             // 
@@ -225,9 +225,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lbReceive.FormattingEnabled = true;
             this.lbReceive.HorizontalScrollbar = true;
-            this.lbReceive.Location = new System.Drawing.Point(220, 280);
+            this.lbReceive.Location = new System.Drawing.Point(258, 280);
             this.lbReceive.Name = "lbReceive";
-            this.lbReceive.Size = new System.Drawing.Size(596, 134);
+            this.lbReceive.Size = new System.Drawing.Size(747, 134);
             this.lbReceive.TabIndex = 144;
             this.lbReceive.DoubleClick += new System.EventHandler(this.lbTransmit_DoubleClick);
             // 
@@ -237,7 +237,7 @@
             this.ModeWorkOpen});
             this.Menu1.Location = new System.Drawing.Point(0, 0);
             this.Menu1.Name = "Menu1";
-            this.Menu1.Size = new System.Drawing.Size(825, 24);
+            this.Menu1.Size = new System.Drawing.Size(1014, 24);
             this.Menu1.TabIndex = 160;
             this.Menu1.Text = "Menu";
             // 
@@ -268,7 +268,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(825, 458);
+            this.ClientSize = new System.Drawing.Size(1014, 459);
             this.Controls.Add(this.bDelete);
             this.Controls.Add(this.pButton);
             this.Controls.Add(this.hexString);

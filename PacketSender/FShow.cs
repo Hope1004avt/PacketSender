@@ -137,13 +137,13 @@ namespace PacketSender
             foreach (var section in configData)
             {
                 if (!section.Key.StartsWith("Основные настройки") && !section.Key.StartsWith("НАЗВАНИЕ ПРОГРАММЫ") 
-                    && !section.Key.StartsWith("ВЫХОДНОЕ СООБЩЕНИЕ"))
+                    && !section.Key.StartsWith("ОТВЕТНОЕ СООБЩЕНИЕ"))
                 {
                     var buttonConfig = section.Value;
                     var button = new Button();
                     {
                         Name = buttonConfig.TryGetValue("name", out string name) ? name : "";
-                        button.Size = new Size(200, 40);
+                        button.Size = new Size(300, 40);
                         button.Font = new Font(button.Font.FontFamily, 10);
                         button.Location = new Point(0, y);
 
@@ -171,7 +171,7 @@ namespace PacketSender
                         {
                             button.Text = buttonText;
                         }
-                        button.MaximumSize = new Size(200, int.MaxValue);
+                        button.MaximumSize = new Size(220, int.MaxValue);
                         button.AutoSize = true;
                         
                         button.AutoSizeMode = AutoSizeMode.GrowOnly;

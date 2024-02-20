@@ -146,8 +146,8 @@ namespace PacketSender
                 Name = tbName.Text,
                // Text = tbName.Text,
                 Location = new System.Drawing.Point(30, 50 * (buttons.Count - 1)),
-                Size = new System.Drawing.Size(150, 40),
-                MaximumSize = new Size(150, int.MaxValue),
+                Size = new System.Drawing.Size(200, 40),
+                MaximumSize = new Size(200, int.MaxValue),
                 AutoSize = true,
 
                 AutoSizeMode = AutoSizeMode.GrowOnly
@@ -297,8 +297,8 @@ namespace PacketSender
                             Name = line,
                             //Text = line,
                             Location = new System.Drawing.Point(30, 50 * buttons.Count),
-                            Size = new System.Drawing.Size(150, 40),
-                            MaximumSize = new Size(150, int.MaxValue),
+                            Size = new System.Drawing.Size(200, 40),
+                            MaximumSize = new Size(200, int.MaxValue),
                             AutoSize = true,
                             AutoSizeMode = AutoSizeMode.GrowOnly
                         };

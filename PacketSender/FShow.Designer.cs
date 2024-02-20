@@ -44,7 +44,7 @@
             this.Choose_ToolStripMenuItem});
             this.Menu.Location = new System.Drawing.Point(0, 0);
             this.Menu.Name = "Menu";
-            this.Menu.Size = new System.Drawing.Size(842, 24);
+            this.Menu.Size = new System.Drawing.Size(935, 24);
             this.Menu.TabIndex = 0;
             this.Menu.Text = "Выбор режима работы";
             // 
@@ -75,18 +75,21 @@
             this.pShow.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.pShow.Location = new System.Drawing.Point(12, 53);
             this.pShow.Name = "pShow";
-            this.pShow.Size = new System.Drawing.Size(207, 356);
+            this.pShow.Size = new System.Drawing.Size(241, 356);
             this.pShow.TabIndex = 2;
             this.pShow.Paint += new System.Windows.Forms.PaintEventHandler(this.pShow_Paint);
             // 
             // lbShow
             // 
+            this.lbShow.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lbShow.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.lbShow.FormattingEnabled = true;
             this.lbShow.ItemHeight = 16;
-            this.lbShow.Location = new System.Drawing.Point(234, 53);
+            this.lbShow.Location = new System.Drawing.Point(259, 53);
             this.lbShow.Name = "lbShow";
-            this.lbShow.Size = new System.Drawing.Size(589, 356);
+            this.lbShow.Size = new System.Drawing.Size(657, 388);
             this.lbShow.TabIndex = 3;
             this.lbShow.SelectedIndexChanged += new System.EventHandler(this.lbShow_SelectedIndexChanged);
             this.lbShow.DoubleClick += new System.EventHandler(this.lbShow_DoubleClick);
@@ -105,7 +108,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(842, 424);
+            this.ClientSize = new System.Drawing.Size(935, 470);
             this.Controls.Add(this.lShow);
             this.Controls.Add(this.lbShow);
             this.Controls.Add(this.pShow);
