@@ -112,8 +112,14 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Choose.PNG" />
+    <Content Include="picturte\Choose.PNG" />
     <Content Include="InfoMessage.txt" />
+    <Content Include="picturte\config.PNG" />
+    <Content Include="picturte\FDebug.PNG" />
+    <Content Include="picturte\FShow.PNG" />
+    <Content Include="picturte\InfoMessage.PNG" />
+    <Content Include="picturte\inputData.PNG" />
+    <Content Include="picturte\OutputFile.PNG" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">

@@ -8,6 +8,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Элементы решения", "Элементы решения", "{3B59033F-F431-423B-AF0C-11E891E27D15}"
 	ProjectSection(SolutionItems) = preProject
 		PackageTesting\bin\Debug\inputData.ini = PackageTesting\bin\Debug\inputData.ini
+		PackageTesting\bin\Debug\OutputFile.txt = PackageTesting\bin\Debug\OutputFile.txt
 	EndProjectSection
 EndProject
 Global

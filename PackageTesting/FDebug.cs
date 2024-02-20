@@ -595,7 +595,7 @@ namespace PacketSender
                 for (int i = 0; i < lbTransmit.Items.Count; i++)
                 {
                     data += "Передача" + " \n" + lbTransmit.Items[i].ToString() + " \n";
-                    data += "Прием" + " \n" + lbTransmit.Items[i].ToString() + " \n";
+                    data += "Прием" + " \n" + lbReceive.Items[i].ToString() + " \n";
                     data += " \n";
                 }
             }
