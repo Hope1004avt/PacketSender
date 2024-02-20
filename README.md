@@ -33,7 +33,7 @@
 Дополнительные детали выходного сообщения записываются в файле InfoMessage.txt, который находится в 
 папке Debug. Содержимое этого файла обновляется при каждом запуске программы.
 
-  ![InfoMessage.txt](https://github.com/Tuki1004/PacketSender/raw/master/PackageTesting/picturte/OutputFile.PNG).
+  ![InfoMessage.txt](https://github.com/Tuki1004/PacketSender/raw/master/PackageTesting/picturte/OutputFile.PNG)
 
 Режим работы для показа
 
