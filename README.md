@@ -11,6 +11,7 @@
 В данном случае это файл inputData.ini, который располагается в папке Debug.
 
   ![FShow](https://github.com/Tuki1004/PacketSender/blob/master/PackageTesting/picturte/FShow.PNG)
+  
 В файле inputData.ini присутствуют три основные секции:
 
  1. [НАЗВАНИЕ ПРОГРАММЫ] - ключ name содержит название программы, которое будет отображаться в заголовке окна.
