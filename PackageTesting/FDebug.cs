@@ -48,6 +48,7 @@ namespace PacketSender
         private void FDebug_Load(object sender, EventArgs e)
         {
             this.FormClosing += FDebug_FormClosing;
+            this.Text = INI.ReadINI("НАЗВАНИЕ ПРОГРАММЫ", "name");
         }
 
         // Прием данных
@@ -57,14 +58,13 @@ namespace PacketSender
             UdpRc.ReadBuffer(DataBuffer);
             uBuffer_my uBuffer_My = new uBuffer_my(DataBuffer);
             NetworkInterface[] adap = NetworkInterface.GetAllNetworkInterfaces();
-            string fromIP = "";
             string time = DateTime.Now.ToString("HH:mm:ss.fff");
 
-            fromIP = fromIP + IP_addr_local(adap) + "";
+            string localIP =IP_addr_local(adap) + "";
 
-            lbReceive.Invoke(new Action<string>((s) => lbReceive.Items.Insert(0, s)), time
-                + " ||  fromIP " + tbAddress.Text + " ||  fromPort " + tbPort.Text + " ||  toAddress " + fromIP +
-                " ||  toPort " + " ||  Data " + uBuffer_My.DataToText_space().ToUpper());
+            lbReceive.Invoke(new Action<string>((s) => lbReceive.Items.Insert(0, s)), "<-  " + time
+                + " ||  localIP " + tbAddress.Text + " ||  localPort " + tbPort.Text + " ||  remoteIP " + localIP +
+                " ||  remotePort " + tbPort.Text + " ||  Data " + uBuffer_My.DataToText_space().ToUpper());
         }
         private string IP_addr_rec(byte[] ip)
         {
@@ -134,27 +134,22 @@ namespace PacketSender
             string dataTime = DateTime.Now.ToString();
 
             NetworkInterface[] adap = NetworkInterface.GetAllNetworkInterfaces();
-            string fromIP = "";
-
             Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
-            fromIP = fromIP + IP_addr_local(adap) + "";
 
+            string localIP = IP_addr_local(adap) + "";
             string protocolType = DetermineProtocolType(socket);
 
             Button button = new Button
             {
                 Name = tbName.Text,
-               // Text = tbName.Text,
                 Location = new System.Drawing.Point(30, 50 * (buttons.Count - 1)),
                 Size = new System.Drawing.Size(200, 40),
                 MaximumSize = new Size(200, int.MaxValue),
                 AutoSize = true,
-
                 AutoSizeMode = AutoSizeMode.GrowOnly
-        };
+            };
 
             string buttonText = tbName.Text;
-
 
             if (buttonText.Length > 18)
             {
@@ -179,7 +174,6 @@ namespace PacketSender
             {
                 button.Text = tbName.Text;
             }
-            
 
             CheckBox checkBox = new CheckBox
             {
@@ -205,9 +199,10 @@ namespace PacketSender
             INI.WriteINI("Name", count.ToString() + " name", tbName.Text);
 
             INI.WriteINI(section, "name", tbName.Text);
-            INI.WriteINI(section, "toIP", tbAddress.Text);
-            INI.WriteINI(section, "port", tbPort.Text);
-            INI.WriteINI(section, "fromIP", fromIP);
+            INI.WriteINI(section, "remoteIP", tbAddress.Text);
+            INI.WriteINI(section, "remotePort", tbPort.Text);
+            INI.WriteINI(section, "localIP", localIP);
+            INI.WriteINI(section, "localPort", tbPort.Text);
             INI.WriteINI(section, "hexString", tbHexString.Text);
             INI.WriteINI(section, "protocolType", protocolType);
             INI.WriteINI(section, "repeat", repeat.ToString());
@@ -252,18 +247,18 @@ namespace PacketSender
                     buttons.Remove(clickedButton);
                     pButton.Controls.Remove(clickedButton);
                 }
-                if (INI.KeyExists("toIP", section))
+                if (INI.KeyExists("remoteIP", section))
                 {
-                    tbAddress.Text = INI.ReadINI(section, "toIP");
+                    tbAddress.Text = INI.ReadINI(section, "remoteIP");
                 }
                 else
                 {
                     buttons.Remove(clickedButton);
                     pButton.Controls.Remove(clickedButton);
                 }
-                if (INI.KeyExists("port", section))
+                if (INI.KeyExists("remotePort", section))
                 {
-                    tbPort.Text = INI.ReadINI(section, "port");
+                    tbPort.Text = INI.ReadINI(section, "remotePort");
                 }
                 else
                 {
@@ -295,7 +290,6 @@ namespace PacketSender
                         Button button = new Button
                         {
                             Name = line,
-                            //Text = line,
                             Location = new System.Drawing.Point(30, 50 * buttons.Count),
                             Size = new System.Drawing.Size(200, 40),
                             MaximumSize = new Size(200, int.MaxValue),
@@ -341,13 +335,13 @@ namespace PacketSender
                 {
                     tbName.Text = INI.ReadINI(section, "name");
                 }
-                if (INI.KeyExists("toIP", section))
+                if (INI.KeyExists("remoteIP", section))
                 {
-                    tbAddress.Text = INI.ReadINI(section, "toIP");
+                    tbAddress.Text = INI.ReadINI(section, "remoteIP");
                 }
-                if (INI.KeyExists("port", section))
+                if (INI.KeyExists("remotePort", section))
                 {
-                    tbPort.Text = INI.ReadINI(section, "port");
+                    tbPort.Text = INI.ReadINI(section, "remotePort");
                 }
                 if (INI.KeyExists("hexString", section))
                 {
@@ -429,8 +423,7 @@ namespace PacketSender
         {
             string time = DateTime.Now.ToString("HH:mm:ss.fff");
             NetworkInterface[] adap = NetworkInterface.GetAllNetworkInterfaces();
-            string FromIP = "";
-            FromIP = FromIP + IP_addr_local(adap);
+            string localIP = IP_addr_local(adap);
             if (tbAddress.Text.Length != 0)
             {
                 if (message.Length != 0)
@@ -448,17 +441,17 @@ namespace PacketSender
                         if (UdpRc.SendDatagramm(TransmitMessage.Buffer, tbAddress.Text, Convert.ToInt32(tbPort.Text)))
                         {
                             repeat++;
-                            lbTransmit.Items.Insert(0, time + " ||  fromIP " + FromIP + " ||  fromPort " + " ||  toAddress "
-                            + tbAddress.Text + " ||  toPort " + tbPort.Text + " ||  Data "
+                            lbTransmit.Items.Insert(0,"->  " + time + " ||  localIP " + localIP + " ||  localPort " + tbPort.Text + " ||  remoteIP "
+                            + tbAddress.Text + " ||  remotePort " + tbPort.Text + " ||  Data "
                             + TransmitMessage.DataToText_space().ToUpper());
                         }
                     }
                     else if (UdpRc.SendDatagramm(TransmitMessage.Buffer, tbAddress.Text, Convert.ToInt32(tbPort.Text)))
                     {
                         SendResponse++;
-                        lbTransmit.Items.Insert(0, time + " ||  fromIP " + FromIP + " ||  fromPort " + " ||  toAddress "
-                            + tbAddress.Text + " ||  toPort " + tbPort.Text + " ||  Data "
-                            + TransmitMessage.DataToText_space().ToUpper());
+                        lbTransmit.Items.Insert(0, "->  " + time + " ||  localIP " + localIP + " ||  localPort " + tbPort.Text + " ||  remoteIP "
+                           + tbAddress.Text + " ||  remotePort " + tbPort.Text + " ||  Data "
+                           + TransmitMessage.DataToText_space().ToUpper());
                     }
                 }
             }
@@ -471,8 +464,6 @@ namespace PacketSender
                 if (checkboxes[i].Checked)
                 {
                     List<string> list = new List<string>();
-                    list = INI.GetSectionKeys("F11");
-
 
                     string section = checkboxes[i].Name;
                     int keyNumber = i + 1;
@@ -480,8 +471,6 @@ namespace PacketSender
                     // Удаление секции и ключа
                     INI.DeleteSection(section);
                     INI.DeleteKey(keyNumber + " name", "Name");
-
-
 
                     if (INI.GetSectionKeys("Name").ToList().Count == 0)
                     {
@@ -594,6 +583,24 @@ namespace PacketSender
         private void tbHexString_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void bSaveFile_Click(object sender, EventArgs e)
+        {
+            string data = "";
+            string filePath = Path.Combine(Application.StartupPath, "OutputFile.txt");
+
+            if(lbTransmit.Items.Count != 0 && lbReceive.Items.Count != 0)
+            {
+                for (int i = 0; i < lbTransmit.Items.Count; i++)
+                {
+                    data += "Передача" + " \n" + lbTransmit.Items[i].ToString() + " \n";
+                    data += "Прием" + " \n" + lbTransmit.Items[i].ToString() + " \n";
+                    data += " \n";
+                }
+            }
+            System.IO.File.WriteAllText(filePath, data, Encoding.Default);
+            MessageBox.Show("Данные успешно сохранены в файле.");
         }
     }
 }

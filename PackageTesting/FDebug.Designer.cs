@@ -54,7 +54,7 @@
             // 
             // bDelete
             // 
-            this.bDelete.Location = new System.Drawing.Point(646, 88);
+            this.bDelete.Location = new System.Drawing.Point(923, 88);
             this.bDelete.Margin = new System.Windows.Forms.Padding(5);
             this.bDelete.Name = "bDelete";
             this.bDelete.Size = new System.Drawing.Size(77, 22);
@@ -116,7 +116,7 @@
             // 
             // bSave
             // 
-            this.bSave.Location = new System.Drawing.Point(472, 88);
+            this.bSave.Location = new System.Drawing.Point(749, 88);
             this.bSave.Margin = new System.Windows.Forms.Padding(5);
             this.bSave.Name = "bSave";
             this.bSave.Size = new System.Drawing.Size(77, 22);
@@ -134,6 +134,7 @@
             this.bSaveFile.TabIndex = 153;
             this.bSaveFile.Text = "Сохранить в файл";
             this.bSaveFile.UseVisualStyleBackColor = true;
+            this.bSaveFile.Click += new System.EventHandler(this.bSaveFile_Click);
             // 
             // lPort
             // 
@@ -173,7 +174,7 @@
             // 
             // bSend
             // 
-            this.bSend.Location = new System.Drawing.Point(559, 88);
+            this.bSend.Location = new System.Drawing.Point(836, 88);
             this.bSend.Margin = new System.Windows.Forms.Padding(5);
             this.bSend.Name = "bSend";
             this.bSend.Size = new System.Drawing.Size(77, 22);
@@ -192,7 +193,7 @@
             this.tbHexString.Margin = new System.Windows.Forms.Padding(5);
             this.tbHexString.Multiline = true;
             this.tbHexString.Name = "tbHexString";
-            this.tbHexString.Size = new System.Drawing.Size(886, 20);
+            this.tbHexString.Size = new System.Drawing.Size(949, 20);
             this.tbHexString.TabIndex = 147;
             this.tbHexString.TextChanged += new System.EventHandler(this.tbHexString_TextChanged);
             this.tbHexString.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbHexString_KeyPress);

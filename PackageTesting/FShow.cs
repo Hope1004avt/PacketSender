@@ -2,17 +2,12 @@
 using IniParser;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Net.Sockets;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net.NetworkInformation;
-using System.Runtime.CompilerServices;
 using System.Net;
 
 namespace PacketSender
@@ -70,20 +65,13 @@ namespace PacketSender
         private void FShow_FormClosing(object sender, FormClosingEventArgs e)
         {
             UdpRc.StopUdp();
-
             Application.Exit();
         }
 
         private void FShow_Load(object sender, EventArgs e)
         {
             NetworkInterface[] adap = NetworkInterface.GetAllNetworkInterfaces();
-
-
             this.Text = data["НАЗВАНИЕ ПРОГРАММЫ"]["name"];
-
-
-
-
         }
 
         private int GetConstPortFromIni()
@@ -136,7 +124,7 @@ namespace PacketSender
 
             foreach (var section in configData)
             {
-                if (!section.Key.StartsWith("Основные настройки") && !section.Key.StartsWith("НАЗВАНИЕ ПРОГРАММЫ") 
+                if (!section.Key.StartsWith("ОСНОВНЫЕ НАСТРОЙКИ") && !section.Key.StartsWith("НАЗВАНИЕ ПРОГРАММЫ") 
                     && !section.Key.StartsWith("ОТВЕТНОЕ СООБЩЕНИЕ"))
                 {
                     var buttonConfig = section.Value;
@@ -172,14 +160,12 @@ namespace PacketSender
                             button.Text = buttonText;
                         }
                         button.MaximumSize = new Size(220, int.MaxValue);
-                        button.AutoSize = true;
-                        
+                        button.AutoSize = true;             
                         button.AutoSizeMode = AutoSizeMode.GrowOnly;
                     };
                     y += button.Height + 10; 
 
-
-                // добавление обработчика события для кнопки 
+                    // добавление обработчика события для кнопки 
                     button.Click += (sender, e) =>
                     {
                         this.Invoke(new Action(() =>
@@ -188,31 +174,30 @@ namespace PacketSender
                         }));
 
                         int port;
-                        int ports = Convert.ToInt32(data["Основные настройки"]["localPort"]);
+                        int ports = Convert.ToInt32(data["ОСНОВНЫЕ НАСТРОЙКИ"]["remotePort"]);
                         string time = DateTime.Now.ToString("HH:mm:ss.fff");
-
                         string protocolType = DetermineProtocolType(soket);
                         string nameComand = buttonConfig["name"];
                         string[] sectionNames = { buttonConfig["name"] };
-                        string FromAddress = IP_addr_local(adap);
-                        string toAddress = (data["Основные настройки"]["remoteIP"]);
+                        string localIP = IP_addr_local(adap);
+                        string remoteIP = (data["ОСНОВНЫЕ НАСТРОЙКИ"]["remoteIP"]);
 
                         DataIn = buttonConfig["hexString"];
 
-                        if (toAddress.Length != 0 && DataIn.Length != 0)
+                        if (remoteIP.Length != 0 && DataIn.Length != 0)
                         {
                             uBuffer_my TransmitMessage = new uBuffer_my(DataIn);
-                            bool isValidPort = int.TryParse(data["Основные настройки"]["localPort"], out port);
+                            bool isValidPort = int.TryParse(data["ОСНОВНЫЕ НАСТРОЙКИ"]["localPort"], out port);
                             if (isValidPort && port != 49152)
                             {
-                                if (UdpRc.SendDatagramm(TransmitMessage.Buffer, toAddress, ports))
+                                if (UdpRc.SendDatagramm(TransmitMessage.Buffer, remoteIP, ports))
                                 {
                                     repeat++;
                                     lbShow.Items.Add("->  " + time + "   " + currentSection);
                                     lbShow.Items.Add(" \n ");
                                 }
                             }
-                            else if (UdpRc.SendDatagramm(TransmitMessage.Buffer, toAddress, ports))
+                            else if (UdpRc.SendDatagramm(TransmitMessage.Buffer, remoteIP, ports))
                             {
                                 SendResponse++;
                                 lbShow.Items.Add("->  " + time + "   " + currentSection);
@@ -236,9 +221,8 @@ namespace PacketSender
             string time = DateTime.Now.ToString("HH:mm:ss.fff");
 
             string protocolType = DetermineProtocolType(soket);
-            string FromAddress = IP_addr_local(adap);
-            string toAddress = IP_addr(Ip) + "";
-            string fromIP = IP_addr_local(adap) + "";
+            string remoteIP = IP_addr(Ip) + "";
+            string localIP = IP_addr_local(adap) + "";
 
             IPEndPoint remoteEndPoint = UdpRc.GetRemoveEndPoint();
             string remoteHostAddress = remoteEndPoint.Address.ToString();
@@ -252,22 +236,19 @@ namespace PacketSender
                 DataOut = uBuffer_My.DataToText_space().ToUpper();
 
                 ShowIniSection(currentSection);
-                string ports = data["Основные настройки"]["toPort"];
+                string ports = data["ОСНОВНЫЕ НАСТРОЙКИ"]["localPort"];
 
                 string opcode = DataOut.Substring(0, 2).ToUpper();
                 string registerNumber = DataOut.Substring(2, 2).ToUpper();
                 string dataRegister = DataOut.Substring(4, 2).ToUpper();
 
-
-
                 lbShow.Invoke(new Action(() =>
                 {
-
                     using (StreamWriter writer = new StreamWriter("InfoMessage.txt", true))
                     {
                         writer.WriteLine($"Время поступления сообщения {time} \n" +
-                        $"Адрес отправителя {toAddress}  порт отправителя {ports} \n" +
-                        $"Адрес получателя {FromAddress}  порт получателя {ports} \n" +
+                        $"Адрес отправителя {remoteIP}  порт отправителя {ports} \n" +
+                        $"Адрес получателя {localIP}  порт получателя {ports} \n" +
                         $"Протокол {protocolType} \n" +
                         $"Сообщение {DataOut},где {opcode} - код получателя, {registerNumber} - номер регистра, " +
                         $"{dataRegister} - данные полученные после чтения регистра. \n" +
@@ -346,11 +327,11 @@ namespace PacketSender
 
                             if (section == currentSection && key == "hexString" && value == data[currentSection]["hexString"])
                             {
-                                string homeValue = GetValueInSection("ВЫХОДНОЕ СООБЩЕНИЕ", DataOut);
+                                string homeValue = GetValueInSection("ОТВЕТНОЕ СООБЩЕНИЕ", DataOut);
                                 {
                                     if (homeValue != null)
                                     {
-                                        lbShow.Items.Add("<-  " + time + "   "+ data["ВЫХОДНОЕ СООБЩЕНИЕ"][DataOut]);
+                                        lbShow.Items.Add("<-  " + time + "   "+ data["ОТВЕТНОЕ СООБЩЕНИЕ"][DataOut]);
                                         lbShow.Items.Add(" \n ");
                                         dataFound = true;
                                     }
