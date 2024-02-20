@@ -10,7 +10,7 @@
 В данном режиме работы вся работа происходит через взаимодействие с файлом настроек ini.
 В данном случае это файл inputData.ini, который располагается в папке Debug.
 
-  ![FShow](picturte/inputData.PNG)
+  ![FShow](https://github.com/Tuki1004/PacketSender/blob/master/PackageTesting/picturte/FShow.PNG)
 В файле inputData.ini присутствуют три основные секции:
 
  1. [НАЗВАНИЕ ПРОГРАММЫ] - ключ name содержит название программы, которое будет отображаться в заголовке окна.
@@ -27,18 +27,18 @@
 скобках и в name совпадали). По ключу hexString записываются входные данные. 
 Таким образом, создается новая кнопка, которая будет отображена на экране программы.
 
- ![inputData.ini](picturte/FShow.PNG)
+ ![inputData.ini](https://github.com/Tuki1004/PacketSender/blob/master/PackageTesting/picturte/inputData.PNG)
 
 Дополнительные детали выходного сообщения записываются в файле InfoMessage.txt, который находится в 
 папке Debug. Содержимое этого файла обновляется при каждом запуске программы.
 
-  ![InfoMessage.txt](picturte/InfoMessage.PNG)
+  ![InfoMessage.txt](https://github.com/Tuki1004/PacketSender/raw/master/PackageTesting/picturte/OutputFile.PNG).
 
 Режим работы для показа
 
 В данном режиме работы ввод данных происходит в самой форме. 
 
-![FDebug](picturte/FDebug.PNG)
+![FDebug](https://github.com/Tuki1004/PacketSender/blob/master/PackageTesting/picturte/FDebug.PNG)
 
 Для создание новой кнопки необходимо ввести название кнопки в строку Name, в строку Address ввести
 адрес получателя, в строку Port ввести порт получателя и в HEX ввести данные. После этого нужно нажать
@@ -49,7 +49,7 @@
 также данные по этой кнопку будут удалены из config.ini файле. Также все входные и выходные сообщения могут быть
 сохранены в файл OutputFile.txt, который расположен в папке Debug. 
 
-![OutputFile.txt](picturte/OutputFile.PNG)
+![OutputFile.txt](https://github.com/Tuki1004/PacketSender/blob/master/PackageTesting/picturte/OutputFile.PNG)
 
 В файле config.ini присутствуют две основные секции:
 
@@ -78,4 +78,4 @@
 Каждая секция описывает одну кнопку, и ключи содержат информацию о настройках 
 и данных, связанных с этой кнопкой.
 
-![config.ini](picturte/config.PNG)
+![config.ini](https://github.com/Tuki1004/PacketSender/blob/master/PackageTesting/picturte/config.PNG)
